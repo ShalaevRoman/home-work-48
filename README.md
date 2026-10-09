@@ -45,5 +45,5 @@ npm run preview
 
 ## Посилання на проект
 
-Демо: _буде додано після деплою на Vercel_
+Демо: https://home-work-48-wheat.vercel.app
 GitHub: https://github.com/ShalaevRoman/home-work-48
