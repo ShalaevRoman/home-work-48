@@ -40,8 +40,21 @@
   font-size: 15px;
 }
 
+.habit-form__select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.habit-form__select-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--accent);
+  pointer-events: none;
+}
+
 .habit-form__select {
-  padding: 10px 12px;
+  padding: 10px 12px 10px 32px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
@@ -50,6 +63,9 @@
 }
 
 .habit-form__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 18px;
   border: none;
   border-radius: 8px;
@@ -98,11 +114,13 @@
   width: 28px;
   height: 28px;
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   border: 2px solid var(--accent-border);
   background: transparent;
   color: var(--accent);
-  font-weight: bold;
   cursor: pointer;
 }
 
@@ -119,20 +137,37 @@
 }
 
 .habit-item__category {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
   color: var(--text);
 }
 
+.habit-item__category-icon {
+  flex: 0 0 auto;
+}
+
 .habit-item__streak {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 14px;
   color: var(--text);
   white-space: nowrap;
+}
+
+.habit-item__streak-icon {
+  color: #f59e0b;
 }
 
 .habit-item__delete {
   width: 28px;
   height: 28px;
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 50%;
   background: transparent;

@@ -1,11 +1,14 @@
 import { useState, type FC, type FormEvent } from 'react'
+import { FaPlus } from 'react-icons/fa'
 import type { HabitFormProps } from '../types/components'
 import type { HabitCategoryId } from '../types/models'
 import { HABIT_CATEGORIES } from '../constants/categories'
+import { CATEGORY_ICONS } from '../constants/categoryIcons'
 
 export const HabitForm: FC<HabitFormProps> = ({ onAdd }) => {
   const [name, setName] = useState('')
   const [category, setCategory] = useState<HabitCategoryId>(HABIT_CATEGORIES[0].id)
+  const SelectedIcon = CATEGORY_ICONS[category]
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -25,18 +28,24 @@ export const HabitForm: FC<HabitFormProps> = ({ onAdd }) => {
         value={name}
         onChange={(event) => setName(event.target.value)}
       />
-      <select
-        className="habit-form__select"
-        value={category}
-        onChange={(event) => setCategory(event.target.value as HabitCategoryId)}
-      >
-        {HABIT_CATEGORIES.map((item) => (
-          <option key={item.id} value={item.id}>
-            {item.label}
-          </option>
-        ))}
-      </select>
+
+      <div className="habit-form__select-wrap">
+        <SelectedIcon className="habit-form__select-icon" />
+        <select
+          className="habit-form__select"
+          value={category}
+          onChange={(event) => setCategory(event.target.value as HabitCategoryId)}
+        >
+          {HABIT_CATEGORIES.map((item) => (
+            <option key={item.id} value={item.id}>
+              {item.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <button className="habit-form__button" type="submit">
+        <FaPlus />
         Додати
       </button>
     </form>
