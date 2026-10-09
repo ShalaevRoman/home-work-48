@@ -1,4 +1,4 @@
-import { HabitForm, HabitList } from './components'
+import { HabitForm, HabitList, ToastNotification } from './components'
 import { useHabits } from './hooks/useHabits'
 import './App.css'
 
@@ -21,6 +21,8 @@ function App() {
         <HabitForm onAdd={addHabit} />
         <HabitList habits={habits} onToggle={toggleToday} onDelete={deleteHabit} />
       </main>
+
+      <ToastNotification />
     </div>
   )
 }

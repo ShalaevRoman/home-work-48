@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import type { Habit, HabitCategoryId } from '../types/models'
 import { STORAGE_KEY } from '../constants/config'
 import { getTodayKey } from '../utils/habitUtils'
+import { notifyError, notifyInfo, notifySuccess } from '../utils/notify'
 
 function loadHabits(): Habit[] {
   try {
@@ -28,27 +29,47 @@ export function useHabits() {
       completedDates: [],
     }
     setHabits((prev) => [...prev, newHabit])
+    notifySuccess(`Звичку "${name}" додано!`)
   }, [])
 
-  const deleteHabit = useCallback((id: string) => {
-    setHabits((prev) => prev.filter((habit) => habit.id !== id))
-  }, [])
+  const deleteHabit = useCallback(
+    (id: string) => {
+      const habit = habits.find((item) => item.id === id)
+      setHabits((prev) => prev.filter((item) => item.id !== id))
+      if (habit) notifyError(`Звичку "${habit.name}" видалено`)
+    },
+    [habits],
+  )
 
-  const toggleToday = useCallback((id: string) => {
-    const today = getTodayKey()
-    setHabits((prev) =>
-      prev.map((habit) => {
-        if (habit.id !== id) return habit
-        const isDone = habit.completedDates.includes(today)
-        return {
-          ...habit,
-          completedDates: isDone
-            ? habit.completedDates.filter((date) => date !== today)
-            : [...habit.completedDates, today],
-        }
-      }),
-    )
-  }, [])
+  const toggleToday = useCallback(
+    (id: string) => {
+      const today = getTodayKey()
+      const habit = habits.find((item) => item.id === id)
+      if (!habit) return
+
+      const isDone = habit.completedDates.includes(today)
+
+      setHabits((prev) =>
+        prev.map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                completedDates: isDone
+                  ? item.completedDates.filter((date) => date !== today)
+                  : [...item.completedDates, today],
+              }
+            : item,
+        ),
+      )
+
+      if (isDone) {
+        notifyInfo(`Позначку з "${habit.name}" знято`)
+      } else {
+        notifySuccess(`"${habit.name}" виконано сьогодні! 🔥`)
+      }
+    },
+    [habits],
+  )
 
   return { habits, addHabit, deleteHabit, toggleToday }
 }

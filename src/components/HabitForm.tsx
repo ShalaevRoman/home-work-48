@@ -4,6 +4,7 @@ import type { HabitFormProps } from '../types/components'
 import type { HabitCategoryId } from '../types/models'
 import { HABIT_CATEGORIES } from '../constants/categories'
 import { CATEGORY_ICONS } from '../constants/categoryIcons'
+import { notifyWarning } from '../utils/notify'
 
 export const HabitForm: FC<HabitFormProps> = ({ onAdd }) => {
   const [name, setName] = useState('')
@@ -13,7 +14,10 @@ export const HabitForm: FC<HabitFormProps> = ({ onAdd }) => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const trimmedName = name.trim()
-    if (!trimmedName) return
+    if (!trimmedName) {
+      notifyWarning('Введіть назву звички')
+      return
+    }
 
     onAdd(trimmedName, category)
     setName('')
