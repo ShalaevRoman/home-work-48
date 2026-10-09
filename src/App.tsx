@@ -1,12 +1,11 @@
 import { HabitForm, HabitList, IdleTimerComponent, StatsChart, ToastNotification } from './components'
 import { useHabits } from './hooks/useHabits'
+import { isCompletedToday } from './utils/habitUtils'
 import './App.css'
 
 function App() {
   const { habits, addHabit, deleteHabit, toggleToday } = useHabits()
-  const completedToday = habits.filter((habit) =>
-    habit.completedDates.includes(new Date().toISOString().slice(0, 10)),
-  ).length
+  const completedToday = habits.filter((habit) => isCompletedToday(habit)).length
 
   return (
     <div className="app">
