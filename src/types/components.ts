@@ -15,3 +15,7 @@ export interface HabitListProps {
   onToggle: (id: string) => void
   onDelete: (id: string) => void
 }
+
+export interface StatsChartProps {
+  habits: Habit[]
+}

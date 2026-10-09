@@ -17,3 +17,9 @@ export interface Habit {
   createdAt: string
   completedDates: string[]
 }
+
+export interface DayStat {
+  date: string
+  label: string
+  count: number
+}

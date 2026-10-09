@@ -1,4 +1,4 @@
-import { HabitForm, HabitList, IdleTimerComponent, ToastNotification } from './components'
+import { HabitForm, HabitList, IdleTimerComponent, StatsChart, ToastNotification } from './components'
 import { useHabits } from './hooks/useHabits'
 import './App.css'
 
@@ -21,6 +21,7 @@ function App() {
       <main className="app__main">
         <HabitForm onAdd={addHabit} />
         <HabitList habits={habits} onToggle={toggleToday} onDelete={deleteHabit} />
+        <StatsChart habits={habits} />
       </main>
 
       <ToastNotification />

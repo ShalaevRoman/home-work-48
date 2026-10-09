@@ -1,4 +1,6 @@
-import type { Habit } from '../types/models'
+import type { DayStat, Habit } from '../types/models'
+
+const WEEKDAY_LABELS = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 
 export function getTodayKey(): string {
   return new Date().toISOString().slice(0, 10)
@@ -24,4 +26,19 @@ export function calculateStreak(habit: Habit): number {
   }
 
   return streak
+}
+
+export function getWeeklyStats(habits: Habit[]): DayStat[] {
+  const days: DayStat[] = []
+
+  for (let offset = 6; offset >= 0; offset -= 1) {
+    const cursor = new Date()
+    cursor.setDate(cursor.getDate() - offset)
+    const date = cursor.toISOString().slice(0, 10)
+    const count = habits.filter((habit) => habit.completedDates.includes(date)).length
+
+    days.push({ date, label: WEEKDAY_LABELS[cursor.getDay()], count })
+  }
+
+  return days
 }

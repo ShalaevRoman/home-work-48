@@ -206,3 +206,15 @@
 .habit-item__delete:hover {
   background: rgba(226, 75, 75, 0.1);
 }
+
+.stats-chart {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  background: var(--card-bg);
+}
+
+.stats-chart__title {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
