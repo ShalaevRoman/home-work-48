@@ -18,6 +18,33 @@
   color: var(--text);
 }
 
+.idle-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.idle-status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+}
+
+.idle-status--idle {
+  color: #b45309;
+  border-color: var(--accent-border);
+}
+
+.idle-status--idle .idle-status__dot {
+  background: #f59e0b;
+}
+
 .app__main {
   display: flex;
   flex-direction: column;

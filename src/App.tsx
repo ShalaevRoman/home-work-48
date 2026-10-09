@@ -1,4 +1,4 @@
-import { HabitForm, HabitList, ToastNotification } from './components'
+import { HabitForm, HabitList, IdleTimerComponent, ToastNotification } from './components'
 import { useHabits } from './hooks/useHabits'
 import './App.css'
 
@@ -11,6 +11,7 @@ function App() {
   return (
     <div className="app">
       <header className="app__header">
+        <IdleTimerComponent />
         <h1>Habit Tracker</h1>
         <p className="app__subtitle">
           Виконано сьогодні: {completedToday} / {habits.length}
